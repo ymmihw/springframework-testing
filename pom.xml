@@ -21,7 +21,4 @@
 
  <dependencies>
  </dependencies>
- <modules>
-  <module>enabled-disabled-if</module>
- </modules>
 </project>
