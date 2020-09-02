@@ -36,5 +36,6 @@
   <module>programmatic-transactions</module>
   <module>spring-jpa-test</module>
   <module>production-mysql-test-h2</module>
+  <module>dynamicproperties</module>
  </modules>
 </project>
