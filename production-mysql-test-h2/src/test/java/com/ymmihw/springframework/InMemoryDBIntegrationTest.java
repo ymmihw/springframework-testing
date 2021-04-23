@@ -1,16 +1,15 @@
 package com.ymmihw.springframework;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import javax.annotation.Resource;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestPropertySource;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.support.AnnotationConfigContextLoader;
 import org.springframework.transaction.annotation.Transactional;
 
-@RunWith(SpringJUnit4ClassRunner.class)
+@SpringBootTest
 @ContextConfiguration(classes = {Application.class}, loader = AnnotationConfigContextLoader.class)
 @Transactional
 @TestPropertySource(locations = "classpath:application-test.properties")
@@ -28,6 +27,6 @@ public class InMemoryDBIntegrationTest {
     studentRepository.save(student);
 
     Student student2 = studentRepository.getOne(ID);
-    assertEquals("name incorrect", NAME, student2.getName());
+    assertEquals(NAME, student2.getName(), "name incorrect");
   }
 }

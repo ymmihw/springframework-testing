@@ -1,21 +1,20 @@
 package com.ymmihw.springframework.testing;
 
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.util.concurrent.TimeUnit;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.InitializingBean;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringRunner;
 
-@RunWith(SpringRunner.class)
-@ContextConfiguration(classes = Spring5JUnit4ConcurrentIntegrationTest.SimpleConfiguration.class)
-public class Spring5JUnit4ConcurrentIntegrationTest
+@SpringBootTest
+@ContextConfiguration(classes = Spring5JUnit5ConcurrentIntegrationTest.SimpleConfiguration.class)
+public class Spring5JUnit5ConcurrentIntegrationTest
     implements ApplicationContextAware, InitializingBean {
 
   @Configuration
@@ -41,16 +40,15 @@ public class Spring5JUnit4ConcurrentIntegrationTest
   public final void verifyApplicationContextSet() throws InterruptedException {
 
     TimeUnit.SECONDS.sleep(2);
-    assertNotNull(
-        "The application context should have been set due to ApplicationContextAware semantics.",
-        this.applicationContext);
+    assertNotNull(this.applicationContext,
+        "The application context should have been set due to ApplicationContextAware semantics.");
   }
 
   @Test
   public final void verifyBeanInitialized() throws InterruptedException {
     TimeUnit.SECONDS.sleep(2);
-    assertTrue("This test bean should have been initialized due to InitializingBean semantics.",
-        this.beanInitialized);
+    assertTrue(this.beanInitialized,
+        "This test bean should have been initialized due to InitializingBean semantics.");
   }
 
 }

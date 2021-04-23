@@ -1,22 +1,22 @@
 package com.ymmihw.springframework.test;
 
-import static junit.framework.TestCase.assertFalse;
-import static junit.framework.TestCase.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.junit.Assert;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Commit;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.transaction.TestTransaction;
 import org.springframework.transaction.annotation.Transactional;
 import com.ymmihw.springframework.test.config.HibernateConf;
 import com.ymmihw.springframework.test.model.TestEntity;
 
-@RunWith(SpringJUnit4ClassRunner.class)
+@SpringBootTest
 @ContextConfiguration(classes = {HibernateConf.class})
 @Transactional
 public class HibernateBootstrapIntegrationTest {
@@ -35,7 +35,7 @@ public class HibernateBootstrapIntegrationTest {
 
     TestEntity searchEntity = session.find(TestEntity.class, 1);
 
-    Assert.assertNotNull(searchEntity);
+    assertNotNull(searchEntity);
   }
 
   @Test
@@ -51,7 +51,7 @@ public class HibernateBootstrapIntegrationTest {
 
     TestEntity searchEntity = session.find(TestEntity.class, 1);
 
-    Assert.assertNotNull(searchEntity);
+    assertNotNull(searchEntity);
     assertTrue(TestTransaction.isFlaggedForRollback());
 
     TestTransaction.flagForCommit();
@@ -70,7 +70,7 @@ public class HibernateBootstrapIntegrationTest {
     session = sessionFactory.getCurrentSession();
     searchEntity = session.find(TestEntity.class, 1);
 
-    Assert.assertNotNull(searchEntity);
+    assertNotNull(searchEntity);
 
     session.delete(searchEntity);
     session.flush();
@@ -86,7 +86,7 @@ public class HibernateBootstrapIntegrationTest {
     session = sessionFactory.getCurrentSession();
     searchEntity = session.find(TestEntity.class, 1);
 
-    Assert.assertNotNull(searchEntity);
+    assertNotNull(searchEntity);
 
     session.delete(searchEntity);
     session.flush();
@@ -106,7 +106,7 @@ public class HibernateBootstrapIntegrationTest {
     session = sessionFactory.getCurrentSession();
     searchEntity = session.find(TestEntity.class, 1);
 
-    Assert.assertNull(searchEntity);
+    assertNull(searchEntity);
   }
 
   @Test
@@ -123,7 +123,7 @@ public class HibernateBootstrapIntegrationTest {
 
     TestEntity searchEntity = session.find(TestEntity.class, 1);
 
-    Assert.assertNotNull(searchEntity);
+    assertNotNull(searchEntity);
     assertFalse(TestTransaction.isFlaggedForRollback());
 
     TestTransaction.end();
@@ -141,7 +141,7 @@ public class HibernateBootstrapIntegrationTest {
     session = sessionFactory.getCurrentSession();
     searchEntity = session.find(TestEntity.class, 1);
 
-    Assert.assertNotNull(searchEntity);
+    assertNotNull(searchEntity);
 
     session.delete(searchEntity);
     session.flush();
@@ -158,7 +158,7 @@ public class HibernateBootstrapIntegrationTest {
     session = sessionFactory.getCurrentSession();
     searchEntity = session.find(TestEntity.class, 1);
 
-    Assert.assertNotNull(searchEntity);
+    assertNotNull(searchEntity);
 
     session.delete(searchEntity);
     session.flush();
@@ -177,7 +177,7 @@ public class HibernateBootstrapIntegrationTest {
     session = sessionFactory.getCurrentSession();
     searchEntity = session.find(TestEntity.class, 1);
 
-    Assert.assertNull(searchEntity);
+    assertNull(searchEntity);
   }
 
 }
