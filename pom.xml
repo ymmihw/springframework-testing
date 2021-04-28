@@ -12,7 +12,7 @@
  <parent>
   <groupId>org.springframework.boot</groupId>
   <artifactId>spring-boot-starter-parent</artifactId>
-  <version>2.3.3.RELEASE</version>
+  <version>2.4.5</version>
   <relativePath />
  </parent>
  <properties>
@@ -38,4 +38,20 @@
   <module>production-mysql-test-h2</module>
   <module>dynamicproperties</module>
  </modules>
+ <build>
+  <plugins>
+   <!-- maven not run test -->
+   <plugin>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-surefire-plugin</artifactId>
+    <version>2.22.0</version>
+   </plugin>
+   <plugin>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-failsafe-plugin</artifactId>
+    <version>2.22.0</version>
+   </plugin>
+   <!-- maven not run test -->
+  </plugins>
+ </build>
 </project>
